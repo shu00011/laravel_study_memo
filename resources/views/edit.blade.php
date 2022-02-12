@@ -1,16 +1,18 @@
 @extends('layouts.app')
 
 @section('javascript')
-<script src="/public/js/confirm.js"/>
+    <script src="/public/js/confirm.js"/>
 
 @section('content')
     <div class="card">
-        <div class="card-header d-flex justify-content-between">
-            メモ編集
+        <div class="card-header d-flex justify-content-between my-card-header">
+            Edit memo
             <form id="delete-form" action="{{route('destory')}}" method="POST">
                 @csrf
                 <input type="hidden" name="memo_id" value="{{$edit_memo[0]['id']}}" />
-                <i class="fas fa-trash mr-3" onclick="deleteHandle(event);"></i>
+                <button type="submit" class="btn btn-light">
+                    <i class="fas fa-trash mr-3" onclick="deleteHandle(event);" type="submit"></i>
+                </button>
             </form>
         </div>
         <form class="card-body my-card-body" action="{{ route('update') }}" method="POST">
@@ -36,9 +38,9 @@
                 </label><!--labelにfor属性で指定することで，labelをクリックしてもチェックボックスにチェックが入る．-->
             </div>
         @endforeach
-            <input type="text" class="form-control w-50 mb-3" name="new_tag" placeholder="新しいタグを入力" />
+            <input type="text" class="form-control w-50 mb-3" name="new_tag" placeholder="Enter a new tag" />
             <button type="submit" class="btn btn-primary">
-                更新
+                Update
             </button><!-- type=submit→actionの位置へ移動-->
         </form>
     </div>

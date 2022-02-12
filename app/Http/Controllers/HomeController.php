@@ -40,6 +40,8 @@ class HomeController extends Controller
         $request->validate(['content'=>'required']);
         // dd(\Auth::id()); // dump dieの略→メソッドの引数に撮った値を展開して止める→データのデバッグ
 
+        $request->session()->regenerateToken(); // 2重送信防止
+
         // トランザクション開始
         // メモIDをインサートして取得
         // 新規タグが入力されているかチェック
@@ -51,7 +53,7 @@ class HomeController extends Controller
 
         DB::transaction(function() use($posts)
         {
-            $memo_id=Memo::insertGetId(['content'=>$posts['content'],'user_id'=>\Auth::id()]);  // メモIDを取得// TODO:reloadで同じ要素をもう一度POSTすることを防ぐ
+            $memo_id=Memo::insertGetId(['content'=>$posts['content'],'user_id'=>\Auth::id()]);  // メモIDを取得
             $tag_exists=Tag::where('user_id','=',\Auth::id())->where('name','=',$posts['new_tag'])->exists();
             if((!empty($posts['new_tag']) || $posts['new_tag']==="0")&& !$tag_exists)   // empty()は"0"も空扱いになるため，0というタグを使うことができない．
             {
@@ -100,6 +102,8 @@ class HomeController extends Controller
         $posts=$request->all(); // requestの値を全てとることができる
         // dd(\Auth::id()); // dump dieの略→メソッドの引数に撮った値を展開して止める→データのデバッグ
         $request->validate(['content'=>'required']);
+
+        $request->session()->regenerateToken(); // 2重送信防止
 
         // トランザクションスタート
         DB::transaction(function() use($posts)

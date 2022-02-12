@@ -2,8 +2,8 @@
 
 @section('content')
     <div class="card">
-        <div class="card-header">
-            新規メモ作成
+        <div class="card-header my-card-header">
+            Create a  new memo
         </div>
         <form class="card-body my-card-body" action="{{ route('store') }}" method="POST">
             @csrf <!-- なりすまし防止のcsrfトークンを発行．laravelでformを使う際に必要となる．-->
@@ -25,9 +25,9 @@
                 </label><!--labelにfor属性で指定することで，labelをクリックしてもチェックボックスにチェックが入る．-->
             </div>
         @endforeach
-            <input type="text" class="form-control w-50 mb-3" name="new_tag" placeholder="新しいタグを入力" /><!-- 1rem親要素の文字サイズと同じサイズ-->
+            <input type="text" class="form-control w-50 mb-3" name="new_tag" placeholder="Enter a new tag" /><!-- 1rem親要素の文字サイズと同じサイズ-->
             <button type="submit" class="btn btn-primary">
-                保存
+                Save
             </button><!-- type=submit→actionの位置へ移動^^>
         </form>
     </div>

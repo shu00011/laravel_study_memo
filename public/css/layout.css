@@ -8,9 +8,22 @@
     white-space:nowrap;
 }
 
+.my-main{
+    width:100vw;
+    max-width:1445px;
+}
+
+.my-card-header{
+    height:45.8px;
+}
+
 @media screen and (max-width:768px) {
     .my-card-body{
         height:auto;
         max-height:50vh;
+    }
+
+    .my-main{
+
     }
 }

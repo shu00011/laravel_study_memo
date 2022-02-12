@@ -77,19 +77,19 @@
             </div>
         </nav>
 
-        <main class="">
+        <main class="my-main">
             <div class="row">
                 <div class="col-sm-12 col-md-2 p-0">
                     <div class="card">
-                        <div class="card-header">
-                            タグ一覧
+                        <div class="card-header my-card-header">
+                                tags
                         </div>
                         <div class="card-body my-card-body">
-                            <a href="/" class="card-text d-block mb-2">
-                                全て表示
+                            <a href="/" class="card-text d-block mb-2 nav-link btn btn-primary link-light">
+                                show all
                             </a>
                         @foreach($tags as $tag)
-                            <a href="/?tag={{$tag['id']}}" class="card-text d-block ellipsis mb-2">
+                            <a href="/?tag={{$tag['id']}}" class="card-text d-block ellipsis mb-2 nav-link">
                                 {{$tag['name']}}
                             </a>
                         @endforeach
@@ -98,13 +98,13 @@
                 </div>
                 <div class="col-sm-12 col-md-4 p-0">
                     <div class="card">
-                        <div class="card-header d-flex justify-content-between">
-                            メモ一覧
+                        <div class="card-header d-flex justify-content-between my-card-header">
+                            memos
                             <a href="{{route('home')}}"><i class="fas fa-plus-circle"></i></a>
                         </div>
                         <div class="card-body my-card-body">
                         @foreach($memos as $memo)
-                            <a href="/edit/{{$memo['id']}}" class="card-text d-block ellipsis mb-3">
+                            <a href="/edit/{{$memo['id']}}" class="card-text d-block ellipsis mb-3 nav-link">
                                 {{$memo['content']}}
                             </a>
                         @endforeach
